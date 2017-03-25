@@ -13,15 +13,15 @@ namespace Shader
         glShaderSource(id, 1, &source, nullptr);
         glCompileShader(id);
         
-        Glint isSuccess;
-        Glchar infoLog[512];
+        GLint isSuccess;
+        GLchar infoLog[512];
         
         glGetShaderiv(id, GL_COMPILE_STATUS, &isSuccess);
         
         if (!isSuccess)
         {
             glGetShaderInfoLog(id, 512, nullptr, infoLog);
-            throw std::runtime_error("Error compiling shader: " + str::string(infoLog));
+            throw std::runtime_error("Error compiling shader: " + std::string(infoLog));
         }
         
         return id;
@@ -29,7 +29,7 @@ namespace Shader
     
     std::string getSource(const std::string sourceFile)
     {
-        std::ifstream inFile("Data/Shaders/" + sourceFile + ".glsl");
+        std::ifstream inFile ("Data/Shaders/" + sourceFile + ".glsl");
         std::string source;
         std::stringstream stringStream;
         
@@ -72,11 +72,3 @@ namespace Shader
         return programId;
     }
 }
-
-
-
-
-
-
-
-

@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "Source/Display.h"
+
 #include "Source/Application.h"
 
 int main()
@@ -8,9 +7,8 @@ int main()
     Display::init();
     
     Application app;
-    app.runMainGameLoop();
     
-    std::cout<<"Hello world"<<std::endl;
+    app.runMainGameLoop();
     
     return 0;
 }

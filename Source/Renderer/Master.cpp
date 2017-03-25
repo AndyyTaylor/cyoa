@@ -2,6 +2,8 @@
 
 #include "../Display.h"
 
+struct Entity;
+
 namespace Renderer
 {
     void Master::clear()
@@ -9,14 +11,14 @@ namespace Renderer
         Display::clear();
     }
     
-    void Master::update()
+    void Master::update(const Camera& camera)
     {
-        m_simpleRenderer.update();
+        m_simpleRenderer.update(camera);
         
         Display::update();
     }
     
-    void Master::draw(const Model& model)
+    void Master::draw(const Quad& model)
     {
         m_simpleRenderer.draw(model);
     }

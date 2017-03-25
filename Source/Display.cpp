@@ -5,12 +5,10 @@
 #include <SFML/Graphics.hpp>
 #include <GL/glew.h>
 
-namespace Display
-{
-    // Automatically clears this pointer when the window is out of scope
+namespace Display 
+{    
     std::unique_ptr<sf::RenderWindow> window;
     
-    // Defining the functions declared in 'Display.h'
     void init()
     {
         sf::ContextSettings settings;
@@ -18,16 +16,17 @@ namespace Display
         settings.majorVersion = 4;
         settings.minorVersion = 1;
         
-        window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WIDTH, HEIGHT)
-                                                    , "Choose Your Own Adventure"
-                                                    , sf::Style::Close
-                                                    , settings);
+        window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WIDTH, HEIGHT), 
+                                                    "Window", 
+                                                    sf::Style::Close, 
+                                                    settings);
         
-        // Otherwise you get a seg fault error which I spent a good hour debugging
         glewExperimental = GL_TRUE;
         glewInit();
-        glViewport(0, 0, WIDTH, HEIGHT);    // Literally the 'viewing port'
-        glEnable(GL_DEPTH_TEST);            // So 3D objects render in the proper order
+        glViewport(0, 0, WIDTH, HEIGHT);
+        glEnable(GL_DEPTH_TEST);
+        
+        window->setMouseCursorVisible(false);
     }
     
     void close()
@@ -37,7 +36,7 @@ namespace Display
     
     void clear()
     {
-        glClearColor(0.0, 0.0, 0.0, 1.0); // rgba
+        glClearColor(0.0, 0.0, 0.0, 1.0);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     }
     
@@ -56,5 +55,15 @@ namespace Display
                 close();
             }
         }
+    }
+    
+    bool isOpen()
+    {
+        return window->isOpen();
+    }
+    
+    const sf::Window& get()
+    {
+        return *window;
     }
 }
