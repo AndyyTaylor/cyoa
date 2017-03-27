@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <SFML/System/Clock.hpp>
+#include <SFML/Graphics.hpp>
+#include "../Display.h"
 
 #include "../Renderer/Master.h"
 
@@ -24,7 +26,7 @@ namespace State
 
     void Playing::input(Camera& camera)
     {
-
+        m_mainScreen.input();
     }
 
     void Playing::update(Camera& camera, float dt)

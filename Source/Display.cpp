@@ -4,6 +4,7 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include <GL/glew.h>
+#include "States/Playing.h"
 
 namespace Display 
 {    
@@ -53,7 +54,7 @@ namespace Display
             if (e.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 close();
-            }
+            } 
         }
     }
     

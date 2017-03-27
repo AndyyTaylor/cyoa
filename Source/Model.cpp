@@ -26,6 +26,7 @@ void Model::addData(const std::vector<GLfloat>& vertexPositions,
                     const std::vector<GLfloat>& textureCoordinates,
                     const std::vector<GLuint>&  indices)
 {
+    m_vboCount = 0;
     glDeleteVertexArrays(1, &m_vao);
     glDeleteBuffers(m_buffers.size(), m_buffers.data());
 

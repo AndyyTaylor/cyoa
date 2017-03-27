@@ -2,9 +2,18 @@
 #define MAIN_SCREEN_H_INCLUDED
 
 #include "Quad.h"
+#include <map>
+
+
 
 namespace Object 
 {
+    struct Room
+    {
+        int id;
+        std::vector<int> options;
+    };
+    
     class MainScreen : public Quad
     {
     public:
@@ -12,8 +21,28 @@ namespace Object
         
         void setupTexture() override;
         
+        GLuint getStory();
+        
+        void input();
+        void readStory();
+        
+        void updateCurrentRoom()
+        {
+            for (int i = 0; i < all_rooms.size(); i++)
+            {
+                if (all_rooms[i].id == story)
+                {
+                    current_room = all_rooms[i];
+                    return;
+                }
+            }
+        }
+        
     private:
-        int story = 0;
+        int story = 2; // Would be using GLuint's because of their cross platform and unsigned nature but dunno how to convert strings to them
+        bool released = true;
+        Room current_room;
+        std::vector<Room> all_rooms;
         std::vector<GLfloat> vertexPositions =
         {
             //Back
