@@ -10,10 +10,10 @@ namespace Renderer
         m_quads.push_back(&quad);
     }
     
-    void Simple::update(const Camera& camera)
+    void Simple::update(const Camera& camera, float goodness)
     {
         m_shader.bind();
-        m_shader.setTime(m_clock.getElapsedTime().asSeconds());
+        m_shader.setGoodness(goodness);
         
         m_shader.setViewMatrix(Maths::createViewMatrix(camera));
         

@@ -38,5 +38,6 @@ namespace State
     void Playing::draw(Renderer::Master& renderer)
     {
         renderer.draw(m_mainScreen);
+        renderer.setGood(m_mainScreen.getGoodness());
     }
 }

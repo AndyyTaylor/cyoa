@@ -13,7 +13,7 @@ namespace Renderer
     
     void Master::update(const Camera& camera)
     {
-        m_simpleRenderer.update(camera);
+        m_simpleRenderer.update(camera, good);
         
         Display::update();
     }

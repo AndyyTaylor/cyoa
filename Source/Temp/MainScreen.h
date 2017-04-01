@@ -26,6 +26,11 @@ namespace Object
         void input();
         void readStory();
         
+        float getGoodness()
+        {
+            return goodness;
+        }
+        
         void updateCurrentRoom()
         {
             for (int i = 0; i < all_rooms.size(); i++)
@@ -41,6 +46,9 @@ namespace Object
     private:
         int story = 2; // Would be using GLuint's because of their cross platform and unsigned nature but dunno how to convert strings to them
         bool released = true;
+        float goodness = 100;
+        float total_good = 0;
+        float actual_good = 0;
         Room current_room;
         std::vector<Room> all_rooms;
         std::vector<GLfloat> vertexPositions =

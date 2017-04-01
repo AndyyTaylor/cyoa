@@ -16,8 +16,14 @@ namespace Renderer
         
         void draw(const Quad& model);
         
+        void setGood(float goodness)
+        {
+            good = goodness;
+        }
+        
     private:
         Simple m_simpleRenderer;
+        float good = 0;
     };
 }
 

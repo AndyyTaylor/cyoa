@@ -89,23 +89,37 @@ namespace Object
         if (released)
         {
             released = false;
+            int op = -1;
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
             {
-                story = current_room.options[0];
+                op = 0;
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
             {
-                story = current_room.options[1];
+                op = 1;
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
             {
-                story = current_room.options[2];
+                op = 2;
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
             {
-                story = current_room.options[3];
+                op = 3;
             } else {
                 released = true;
             }
             if (!released)
             {
+                if (story > 2) {
+                    total_good += 100;
+                    if (op == 0){
+                        actual_good += 100;
+                    } else if (op == 1){
+                        actual_good += 66;
+                    } else if (op == 2){
+                        actual_good += 33;
+                    } // no (op == 3) because it would only += 0
+                    goodness = actual_good/total_good * 100;
+                }
+                std::cout << goodness << std::endl;
+                story = current_room.options[op];
                 updateCurrentRoom();
                 setupTexture();
             }

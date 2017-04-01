@@ -16,15 +16,15 @@ namespace Shader
     
     void Simple_Shader::getUniformLocations()
     {
-        m_locationTime = glGetUniformLocation(getId(), "time");
+        m_locationGood = glGetUniformLocation(getId(), "goodness");
         m_locationViewMatrix = glGetUniformLocation(getId(), "viewMatrix");
         m_locationProjMatrix = glGetUniformLocation(getId(), "projMatrix");
         m_locationModelMatrix = glGetUniformLocation(getId(), "modelMatrix");
     }
     
-    void Simple_Shader::setTime(float time)
+    void Simple_Shader::setGoodness(float goodness)
     {
-        loadFloat(m_locationTime, time);
+        loadFloat(m_locationGood, goodness);
     }
     
     void Simple_Shader::setViewMatrix(const Matrix4 &matrix)

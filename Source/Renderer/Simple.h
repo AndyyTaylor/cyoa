@@ -15,7 +15,7 @@ namespace Renderer
     public:
         void draw(const Quad& quad);
         
-        void update(const Camera& camera);
+        void update(const Camera& camera, float goodness);
         
     private:
         void prepare(const Quad& quad);
