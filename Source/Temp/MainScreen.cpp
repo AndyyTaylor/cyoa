@@ -107,7 +107,7 @@ namespace Object
             }
             if (!released)
             {
-                if (story > 2) {
+                if (story > 2 && story != 7 && story < 16) {
                     total_good += 100;
                     if (op == 0){
                         actual_good += 100;
@@ -117,9 +117,18 @@ namespace Object
                         actual_good += 33;
                     } // no (op == 3) because it would only += 0
                     goodness = actual_good/total_good * 100;
-                }
-                std::cout << goodness << std::endl;
+                } 
                 story = current_room.options[op];
+                if (story == 7) {
+                    if (goodness == 100){ story = 16; }
+                    else if (goodness > 75){ story = 17; }
+                    else if (goodness > 50){ story = 18; }
+                    else { story = 19; }
+                } else if (story == 0){
+                    total_good = 0;
+                    actual_good = 0;
+                    goodness = 100;
+                } 
                 updateCurrentRoom();
                 setupTexture();
             }

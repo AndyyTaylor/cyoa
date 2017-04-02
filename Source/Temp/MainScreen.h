@@ -44,7 +44,8 @@ namespace Object
         }
         
     private:
-        int story = 2; // Would be using GLuint's because of their cross platform and unsigned nature but dunno how to convert strings to them
+        int story = 0; // Would be using GLuint's because they're cross platform and I don't need negatives but i can't convert from strings
+                       // ... just realised i should be using uint's at least :/ oh well
         bool released = true;
         float goodness = 100;
         float total_good = 0;
