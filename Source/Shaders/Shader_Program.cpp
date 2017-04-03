@@ -1,10 +1,4 @@
 #include "Shader_Program.h"
-
-
-
-// Gaps so I can learn dvorak easier
-
-
 #include "Shader_Loader.h"
 
 namespace Shader
@@ -27,6 +21,8 @@ namespace Shader
     
     void Shader_Program::unbind()
     {
+        // Use program with id 0 means to clear the program
+        // useful so you don't accidently use the wrong program
         glUseProgram(0);
     }
     

@@ -8,6 +8,8 @@
 
 namespace Object 
 {
+    // Wow I completely forgot I was using structs for the rooms
+    // Well here it is
     struct Room
     {
         int id;

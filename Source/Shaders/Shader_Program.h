@@ -7,6 +7,8 @@
 
 #include "../Glm_Common.h"
 
+// More header files!
+// Also namespaces are a really interesting way of keeping things in different files 'connected' by scope
 namespace Shader
 {
     class Shader_Program
@@ -23,6 +25,7 @@ namespace Shader
         
         GLuint getId() const;
         
+        // Used to load values into uniform variables
         void loadFloat(GLuint location, float value);
         void loadVector2(GLuint location, const Vector2& vector);
         void loadMatrix4(GLuint location, const Matrix4& matrix);

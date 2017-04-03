@@ -60,6 +60,8 @@ GLuint Model::getIndicesCount() const
 
 void Model::addVBO(int dim, const std::vector<GLfloat>& data)
 {
+    // A model in opengl is made up of Vertex Array Objects and Vertex Buffer Objects
+    // Don't really have enough space to properly explain them here, they took me a while to understand
     GLuint vbo;
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -82,6 +84,7 @@ void Model::addVBO(int dim, const std::vector<GLfloat>& data)
 
 void Model::addEBO(const std::vector<GLuint>& indices)
 {
+    // A nicer way of handling repeated vertices
     GLuint ebo;
     glGenBuffers(1, &ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);

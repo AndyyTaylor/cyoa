@@ -16,6 +16,8 @@ namespace Renderer
         
         void draw(const Quad& model);
         
+        // Yeah not great variable names but anyway
+        // this is for the scoring system
         void setGood(float goodness)
         {
             good = goodness;

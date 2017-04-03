@@ -3,9 +3,11 @@
 
 #include "../Glm_Common.h"
 
+// Forward declarations which I really like the idea of
 struct Entity;
 class Camera;
 
+// Just a header file, nothing special
 namespace Maths
 {
     Matrix4 createViewMatrix(const Camera& entity);

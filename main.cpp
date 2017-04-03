@@ -2,6 +2,7 @@
 
 #include "Source/Application.h"
 
+// Now this.. this is what a main.cpp should look like
 int main()
 {
     Display::init();

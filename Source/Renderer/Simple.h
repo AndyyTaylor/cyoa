@@ -8,6 +8,7 @@
 class Quad;
 class Camera;
 
+// Header file, nothing crazy
 namespace Renderer
 {
     class Simple

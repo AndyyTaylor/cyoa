@@ -14,7 +14,6 @@ namespace Object
     MainScreen::MainScreen(Texture::Atlas& textureAtlas)
     : Quad(textureAtlas)
     {
-        std::cout << "Hello" << std::endl;
         setupTexture();
         readStory();
         updateCurrentRoom();
@@ -22,6 +21,8 @@ namespace Object
     
     void MainScreen::setupTexture()
     {
+        // Each insertTextureCoords corresponds to a different face on the screen
+        // and the coordinates are the coords on the sprite sheet
         textureCoords.clear();
         insertTextureCoords(m_textureAtlas.getTextureCoords({1, 0}));
         insertTextureCoords(m_textureAtlas.getTextureCoords({0, 0}));
@@ -29,12 +30,14 @@ namespace Object
         insertTextureCoords(m_textureAtlas.getTextureCoords({0, 0}));
         insertTextureCoords(m_textureAtlas.getTextureCoords({0, 0}));
         insertTextureCoords(m_textureAtlas.getTextureCoords({0, 0}));
-
+        
+        // Updates the actual model
         m_model.addData(vertexPositions, textureCoords, indices);
     }
     
     void MainScreen::readStory()
     {
+        // Reads the story file
         std::ifstream file;
         file.open("Data/Story.txt");
         
@@ -53,10 +56,11 @@ namespace Object
         std::vector<std::string> strings;
         std::istringstream f(source);
         std::string s;
-        while (std::getline(f, s, '|')) {
+        while (std::getline(f, s, '|')) { // The closest thing to .split() I could find
             strings.push_back(s);
         }
         
+        // I'll be honest I can't exactly remember how this worked.. but it does!
         Room r;
         for (int i = 0; i < strings.size(); i++)
         {
@@ -71,19 +75,17 @@ namespace Object
             } 
             else
             {
-                r.options.push_back(std::stoi(strings[i]));
+                r.options.push_back(std::stoi(strings[i])); // stoi -> string to int
             }
         }
         all_rooms.push_back(r);
-        
-        for (int i = 0; i < all_rooms.size(); i++)
-        {
-            std::cout << all_rooms[i].options.size() << std::endl;
-        }
     }
     
     void MainScreen::input()
     {
+        // Unfortunately this was because I didn't have enough time to do it any other way
+        // The Display object already cycles through any created events in order to check if its closed
+        // so I had to make my own little pressed / released system
         if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
             released = true;
         if (released)
@@ -107,6 +109,7 @@ namespace Object
             }
             if (!released)
             {
+                // Change goodness based on how good the choice way 'op -> option number'
                 if (story > 2 && story != 7 && story < 16) {
                     total_good += 100;
                     if (op == 0){
@@ -118,13 +121,16 @@ namespace Object
                     } // no (op == 3) because it would only += 0
                     goodness = actual_good/total_good * 100;
                 } 
+                // Set the new story index
                 story = current_room.options[op];
+                // This code has to be run after the story is updated
+                // Skill check screen
                 if (story == 7) {
                     if (goodness == 100){ story = 16; }
                     else if (goodness > 75){ story = 17; }
                     else if (goodness > 50){ story = 18; }
                     else { story = 19; }
-                } else if (story == 0){
+                } else if (story == 0){ // Reset goodness
                     total_good = 0;
                     actual_good = 0;
                     goodness = 100;

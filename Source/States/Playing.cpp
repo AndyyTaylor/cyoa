@@ -19,7 +19,9 @@ namespace State
     ,   m_mainScreen      (m_texture)
     {
         m_texture.bind();
-
+        
+        // These lines are the reason you spawn literally ontop of the screen
+        // but at least that forces you to experiment with moving
         m_mainScreen.position.z -= 2;
         m_mainScreen.position.y -= 2;
     }

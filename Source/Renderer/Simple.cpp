@@ -12,13 +12,16 @@ namespace Renderer
     
     void Simple::update(const Camera& camera, float goodness)
     {
+        // Binds the shaders id with opengl
         m_shader.bind();
         m_shader.setGoodness(goodness);
         
+        // Gets passed into the shader
         m_shader.setViewMatrix(Maths::createViewMatrix(camera));
         
         for (auto& quad : m_quads)
         {
+            // Pointers and references are very confusing
             prepare(*quad);
             glDrawElements(GL_TRIANGLES, quad->getModel().getIndicesCount(), GL_UNSIGNED_INT, nullptr);
         }

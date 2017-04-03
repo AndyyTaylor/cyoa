@@ -16,6 +16,8 @@ namespace State
     public:
         Game_State(Application& application);
         
+        // virtual means it has to be defined by the child class
+        // I think this is 'abstract' in Java 
         virtual void input(Camera& camera) = 0;
         virtual void update(Camera& camera, float dt) = 0;
         virtual void draw(Renderer::Master& renderer) = 0;

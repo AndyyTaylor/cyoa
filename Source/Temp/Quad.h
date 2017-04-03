@@ -6,6 +6,7 @@
 
 #include "../Texture/Texture_Atlas.h"
 
+// Stores all the basic data for a Quadrilateral (spelling?)
 class Quad : public Entity
 {
     public:

@@ -13,6 +13,7 @@ void Camera::input(float dt)
     Vector3 change;
     float speed = 5;
 
+    // Translation
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         change.x -= cos(glm::radians(rotation.y + 90)) * speed;
@@ -47,6 +48,7 @@ void Camera::input(float dt)
         change.y -= 2;
     }
 
+    // * dt to normalize movement irrespective of fps
     position += change * dt;
 
     mouseInput();
@@ -65,6 +67,8 @@ void Camera::mouseInput()
     rotation.y += mouseChange.x;
     rotation.x += mouseChange.y;
 
+    // sfml does NOT play nice with mac ;(
+    
     // if (rotation.x > 80)
     // {
     //     rotation.x = 80;
@@ -87,13 +91,10 @@ void Camera::mouseInput()
     
     //std::cout << mousePos.x << ", " << mousePos.y << std::endl;
     
-    // Needs work
+    // Constantly resetting the mouse pos, which is a much better option, causes the game to lag majorly
     if (mousePos.x < 80 || mousePos.y < 80 || mousePos.y > 800 || mousePos.x > 1350){
         sf::Mouse::setPosition(sf::Vector2i{centerX, centerY});
     }
-    //if (tick % 50 == 0) sf::Mouse::setPosition(sf::Vector2i{centerX, centerY});
-    //sf::Mouse::setPosition(sf::Vector2i{centerX, centerY});
-    //sf::Mouse::setPosition(sf::Vector2i{centerX, centerY}, Display::get());
 
     lastMousePosition = sf::Mouse::getPosition();
 }

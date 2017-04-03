@@ -12,6 +12,7 @@ namespace Display
     
     void init()
     {
+        // Setup opengl context
         sf::ContextSettings settings;
         settings.depthBits = 24;
         settings.majorVersion = 4;
@@ -22,12 +23,13 @@ namespace Display
                                                     sf::Style::Close, 
                                                     settings);
         
+        // Ahhhh this line... Mentioned in the bug report
         glewExperimental = GL_TRUE;
         glewInit();
         glViewport(0, 0, WIDTH, HEIGHT);
-        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST); // Literally tests the depth of pixels so as to render them in the correct order
         
-        window->setMouseCursorVisible(false);
+        window->setMouseCursorVisible(false); // No mouse pointer
     }
     
     void close()
@@ -37,6 +39,7 @@ namespace Display
     
     void clear()
     {
+        // Clears everything relevant to each pixel
         glClearColor(0.0, 0.0, 0.0, 1.0);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     }

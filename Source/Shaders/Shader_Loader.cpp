@@ -8,8 +8,10 @@ namespace Shader
 {
     GLuint compileShader(const GLchar* source, GLenum type)
     {
+        // Opengl refers to practically everything by an 'id' (which is a GLuint)
         auto id = glCreateShader(type);
         
+        // Sends in the shader's source code
         glShaderSource(id, 1, &source, nullptr);
         glCompileShader(id);
         
@@ -18,6 +20,7 @@ namespace Shader
         
         glGetShaderiv(id, GL_COMPILE_STATUS, &isSuccess);
         
+        // Error handling
         if (!isSuccess)
         {
             glGetShaderInfoLog(id, 512, nullptr, infoLog);
@@ -29,6 +32,7 @@ namespace Shader
     
     std::string getSource(const std::string sourceFile)
     {
+        // Reads the shader source from a file
         std::ifstream inFile ("Data/Shaders/" + sourceFile + ".glsl");
         std::string source;
         std::stringstream stringStream;
@@ -46,6 +50,8 @@ namespace Shader
     
     GLuint createProgram(GLuint vertexShaderId, GLuint fragmentShaderId)
     {
+        // A program holds a number of shaders, typically a vertexShader,
+        // fragmentShader and geometryShader (not used here)
         auto id = glCreateProgram();
         
         glAttachShader(id, vertexShaderId);
@@ -58,6 +64,7 @@ namespace Shader
     
     GLuint loadShader(const std::string& vertexShaderFile, const std::string& fragmentShaderFile)
     {
+        // Calls the above functions
         auto vertexSource = getSource(vertexShaderFile);
         auto fragmentSource = getSource(fragmentShaderFile);
         
@@ -66,6 +73,7 @@ namespace Shader
         
         auto programId = createProgram(vertexShaderId, fragmentShaderId);
         
+        // Don't need the shaders anymore as they've been copied into the program
         glDeleteShader(vertexShaderId);
         glDeleteShader(fragmentShaderId);
         
