@@ -14,3 +14,5 @@ Yes the game does grab your mouse, no there's no way to release the mouse mid ga
 
 - sfml doesn't play nice with mac and mouse.. don't be rough with the mouse inputs :)
 - and I couldn't see any possible reason to have to press more than 1 key at once :)
+
+- Code was based off a tutorial I followed by Matt Hopson. [Tutorial Here](https://www.youtube.com/watch?v=GACpZp8oquU)
